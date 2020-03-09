@@ -150,9 +150,8 @@ public class ParkingArea {
                 spots = spots+ parkingSpots[i][j] + "\n";
             }
         }
-        return "ParkingArea{" +
-                "parkingSpots=" + "\n" + spots +
-                ", parkingLevel=" + parkingLevel +
+        return "ParkingArea{" + "parkingLevel=" + parkingLevel + "\n" +
+                ", parkingSpots=" + "\n" + spots +
                 '}' + "\n";
     }
 }

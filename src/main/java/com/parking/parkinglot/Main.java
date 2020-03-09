@@ -20,7 +20,7 @@ public class Main {
         try {
             main.start(scanner);
         } catch (Exception e) {
-            System.out.println("Invalid input");
+            System.out.println("Invalid input" + "\n");
         }
 
 
@@ -86,9 +86,9 @@ public class Main {
                     vehicleInfo.setParkingLevel(pair.getKey());
                     vehicleInfo.setSpot(pair.getValue());
                     storeInfo.put(vehicle.getNumber(), vehicleInfo);
-                    System.out.println(pair.getValue().toString());
+                    System.out.println(vehicleInfo.toString() + "\n");
                 } catch (ParkingException e) {
-                    System.out.println("No Parking available");
+                    System.out.println("No Parking available" + "\n");
                 }
 
             } else if (info == 2) {
@@ -97,15 +97,16 @@ public class Main {
 
                 VehicleInfo outgoing = storeInfo.get(outgoingVehicleNumber);
                 try {
-                    strategy.removeVehicle(parking, outgoing, outgoingVehicleNumber);
+                    ParkingSpot spot = strategy.removeVehicle(parking, outgoing, outgoingVehicleNumber);
                     storeInfo.remove(outgoingVehicleNumber);
+                    System.out.println("Removed Vehicle at Parking Level: " + outgoing.getParkingLevel() + " at Spot Number: " + spot.getSpotNumber() + "\n");
                 } catch (ParkingException e) {
-                    System.out.println("No Vehicle found with the given number");
+                    System.out.println("No Vehicle found with the given number" + "\n");
                 }
 
 
             } else if (info == 3) {
-                System.out.println(strategy.getParkingInfo(parking));
+                System.out.println(strategy.getParkingInfo(parking) + "\n");
             } else {
                 System.out.println("Wrong input entered");
             }

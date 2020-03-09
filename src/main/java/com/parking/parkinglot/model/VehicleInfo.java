@@ -20,4 +20,12 @@ public class VehicleInfo {
     public void setSpot(ParkingSpot spot) {
         this.spot = spot;
     }
+
+    @Override
+    public String toString() {
+        return "VehicleInfo{" +
+                "parkingLevel=" + parkingLevel +
+                ", spot=" + spot +
+                '}' + "\n";
+    }
 }

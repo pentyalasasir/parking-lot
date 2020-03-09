@@ -52,18 +52,19 @@ public class ParkingStrategy {
         throw new ParkingException(ParkingExceptionCode.NO_PARKING);
     }
 
-    public void removeVehicle(MultiLevelParking multiLevelParking, VehicleInfo info, String vehicleNumber) throws ParkingException {
+    public ParkingSpot removeVehicle(MultiLevelParking multiLevelParking, VehicleInfo info, String vehicleNumber) throws ParkingException {
         List<ParkingArea> parking = multiLevelParking.getParkingAreas();
         if(info.getSpot().getSpotType() != ParkingType.ROYAL){
             ParkingSpot spot = parking.get(info.getParkingLevel()).getParkingSpot(info.getSpot().getSpotNumber());
             List<IVehicle> vehicles = info.getSpot().getVehicles().stream().filter(v -> v.getNumber().equalsIgnoreCase(vehicleNumber)).collect(Collectors.toList());
             spot.removeVehicle(vehicles.get(0));
+            return spot;
         }else{
-            removeRoyalSpots(parking.get(info.getParkingLevel()).getParkingSpots(), info);
+            return removeRoyalSpots(parking.get(info.getParkingLevel()).getParkingSpots(), info);
         }
     }
 
-    private void removeRoyalSpots(ParkingSpot[][] parkingSpots, VehicleInfo info){
+    private ParkingSpot removeRoyalSpots(ParkingSpot[][] parkingSpots, VehicleInfo info){
         int i = info.getSpot().getRow();
         int j = info.getSpot().getCol();
 
@@ -111,6 +112,7 @@ public class ParkingStrategy {
         }
 
         parkingSpots[i][j] = new ParkingSpot(i,j);
+        return parkingSpots[i][j];
     }
 
     public String getParkingInfo(MultiLevelParking multiLevelParking){
