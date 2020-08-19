@@ -12,3 +12,5 @@ How to start the Parking Lot application
 1. Run `mvn clean install` to build your application
 2. Start application with `java -cp target\parking-lot-1.0.jar com.parking.parkinglot.Main`
 3. Enter the details.
+
+changes.
